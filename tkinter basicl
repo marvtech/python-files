@@ -1,0 +1,11 @@
+from tkinter import *
+
+root = Tk()
+root.wm_title('     Marv window')
+# creating label widget
+label1 = Label(root, text="Marv Craft is alive")
+# calling the label up
+label1.pack() # once a widget is created it must be packed or 'put into' the gui
+
+# create main loop for perpetual running of program unless stopped
+root.mainloop()
