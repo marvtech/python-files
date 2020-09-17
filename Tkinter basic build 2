@@ -1,0 +1,18 @@
+
+# build 2 this portion of programming is the grid system in a gui
+
+from tkinter import *
+
+root = Tk()
+root.wm_title('     Marv window')
+
+# creating label widget
+label1 = Label(root, text="Marv Craft is alive")
+label2 = Label(root, text="Marv Craft is beginning to grow")
+# calling the label up but not packing it anymore, we are gridding to place it in a specific location
+label1.grid(row=0, column=0)  # grids are rows and columns
+label2.grid(row=1, column=1)  #object oriented program (python) allows you to add the grid syntax at the end
+# of calling the label
+
+# create main loop for perpetual running of program unless stopped
+root.mainloop()
