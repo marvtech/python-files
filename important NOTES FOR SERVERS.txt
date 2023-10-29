@@ -1,0 +1,44 @@
+important notes on servers that should seem obvious but at times I get confused. 
+
+NOTE 1 hosting a file = locating an exploit file, python, bash, perl, etc in a directory then  running a python server in that same directory
+that python3 -m simple http gives access to the file when a wget or a curl command is made from another terminal asking for the file. 
+
+NOTE2 NETCAT OR SOCAT listener is set up in your directory of choice so when the exploit is run the listener can grab the info and place the shell.
+It is best to run the listener from a directory where  you can obtain a shell and download the files from the victims computer where your shell is active on. 
+
+NOTE3 the exploit must be run either from the actual directory the exploit file is in or it must be given the right path so python can find the 
+file in order to run it
+NOTE4 make sure the file is shebanged or has chmod +s or +x so its executable by the user of the file.
+
+EXAMPLE
+┌──(kali㉿kali)-[~]
+└─$ python -V                                                       
+Python 2.7.18
+                                                                                                          
+┌──(kali㉿kali)-[~]
+└─$ python3 -V
+Python 3.9.7
+                                                                                                          
+┌──(kali㉿kali)-[~]
+└─$ python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+192.168.1.133 - - [07/Nov/2021 15:12:10] "GET / HTTP/1.1" 200 -
+192.168.1.133 - - [07/Nov/2021 15:12:11] code 404, message File not found
+192.168.1.133 - - [07/Nov/2021 15:12:11] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.1.133 - - [07/Nov/2021 15:12:40] "GET /Basic_Pentesting/ HTTP/1.1" 200 -
+192.168.1.133 - - [07/Nov/2021 15:12:44] "GET /Basic_Pentesting/pentesting_notes.txt HTTP/1.1" 200 -
+
+Keyboard interrupt received, exiting.
+^C                                                                                                          
+┌──(kali㉿kali)-[~]
+└─$ python -m SimpleHTTPServer                                      
+Serving HTTP on 0.0.0.0 port 8000 ...
+192.168.1.133 - - [07/Nov/2021 15:14:10] "GET / HTTP/1.1" 200 -
+192.168.1.133 - - [07/Nov/2021 15:14:22] "GET /Pictures/ HTTP/1.1" 200 -
+
+to change port, simply change port and add to end of server command 
+python -m SimpleHTTPServer 8080
+┌──(kali㉿kali)-[~]
+└─$ python -m SimpleHTTPServer 8080                                                                   1 ⨯
+Serving HTTP on 0.0.0.0 port 8080 ...
+
